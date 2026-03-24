@@ -1,0 +1,14 @@
+@layer components {
+  .btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+    border-radius: var(--radius-ui);
+    padding: calc(var(--spacing) * 2) calc(var(--spacing) * 4);
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-primary-hover);
+  }
+}

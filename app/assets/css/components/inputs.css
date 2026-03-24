@@ -1,0 +1,15 @@
+@layer components {
+  .input-text {
+    border: 1px solid var(--color-gray-300);
+    border-radius: var(--radius-ui);
+    padding: calc(var(--spacing) * 2) calc(var(--spacing) * 3);
+    width: 100%;
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+
+  .input-text:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px var(--color-primary);
+  }
+}

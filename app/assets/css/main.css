@@ -1,0 +1,42 @@
+/* 1. Import Tailwind Core */
+@import "tailwindcss";
+
+/* 2. Define Shared Theme Variables */
+@theme {
+  /* Raw palette for Brand Colors from HEX list */
+  --color-black: #000000;
+  --color-verdigris: #009a8e; /* Teal-ish */
+  --color-orange: #fd8b1f; /*  Dark Orange (Primary) */
+  --color-coral: #ff7b47; /*  Coral Glow */
+  --color-dark-teal: #00404c; /*  Deep Teal */
+  --color-amber: #ffc22f; /*  Amber Gold */
+  --color-gray: #3f3f46;
+
+  /* Semantic tokens */
+  --color-primary: var(--color-orange);
+  --color-secondary: var(--color-verdigris);
+  --color-danger: var(--color-coral);
+  --color-accent: var(--color-amber);
+  --color-success: var(--color-verdigris);
+  --color-error: var(--color-coral);
+  --color-warning: var(--color-amber);
+
+  --color-primary-hover: color-mix(in srgb, var(--color-primary), black 10%);
+  --color-surface: #f8fafc;
+  --radius-ui: 0.5rem;
+
+  --color-gradient: linear-gradient(
+    90deg,
+    var(--color-verdigris) 0%,
+    var(--color-primary) 50%,
+    var(--color-amber) 100%
+  );
+}
+
+/* 3. Import Custom Component Styles */
+@import "./components/buttons.css";
+@import "./components/inputs.css";
+
+/* As your project grows, you can easily add more here: */
+/* @import "./components/cards.css"; */
+/* @import "./components/modals.css"; */
