@@ -16,14 +16,24 @@
   --color-primary: var(--color-orange);
   --color-secondary: var(--color-verdigris);
   --color-danger: var(--color-coral);
-  --color-accent: var(--color-amber);
+  --color-accent: var(--color-dark-teal);
   --color-success: var(--color-verdigris);
   --color-error: var(--color-coral);
   --color-warning: var(--color-amber);
 
   --color-primary-hover: color-mix(in srgb, var(--color-primary), black 10%);
+
+  /* --- 3. Semantic Surfaces (Fixes "white") --- */
   --color-surface: #f8fafc;
-  --radius-ui: 0.5rem;
+  --color-surface-muted: var(--color-gray-100);
+  --color-text-main: var(--color-gray-900);
+  --color-text-muted: var(--color-gray-500);
+
+  --color-disabled-bg: var(--color-gray-100);
+  --color-disabled-text: var(--color-gray-400);
+  --color-disabled-border: var(--color-gray-200);
+
+  --radius-ui: 1rem;
 
   --color-gradient: linear-gradient(
     90deg,
@@ -31,11 +41,23 @@
     var(--color-primary) 50%,
     var(--color-amber) 100%
   );
+
+  /* Input Variables */
+  --input-border: var(--color-gray-300);
+  --input-focus: var(--color-primary);
+  --input-bg: var(--color-surface);
+
+  /* Uniform vertical padding for all UI elements */
+  --spacing-ui-y: calc(var(--spacing) * 1.5); /* Equivalent to 10px / py-2.5 */
+
+  /* You can also define horizontal padding if you want that uniform too */
+  --spacing-ui-x: calc(var(--spacing) * 4); /* Equivalent to 16px / px-4 */
 }
 
 /* 3. Import Custom Component Styles */
 @import "./components/buttons.css";
 @import "./components/inputs.css";
+@import "./components/selection.css";
 
 /* As your project grows, you can easily add more here: */
 /* @import "./components/cards.css"; */

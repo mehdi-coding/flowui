@@ -1,0 +1,168 @@
+/* assets/css/components/selection.css */
+@layer components {
+  /* --- Base Logic for Selection Elements --- */
+  .checkbox,
+  .switch {
+    --select-color: var(--color-primary); /* Default */
+    appearance: none;
+    cursor: pointer;
+    background-color: var(--input-bg);
+    transition: all 0.2s ease;
+    outline: none;
+  }
+
+  /* --- Traditional Checkbox --- */
+  .checkbox {
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid var(--input-border);
+    border-radius: calc(var(--radius-ui) / 2);
+    display: grid;
+    place-content: center;
+  }
+
+  .checkbox::before {
+    content: "";
+    width: 0.65rem;
+    height: 0.65rem;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em white;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  }
+
+  .checkbox:checked {
+    background-color: var(--select-color);
+    border-color: var(--select-color);
+  }
+
+  .checkbox:checked::before {
+    transform: scale(1);
+  }
+
+  /* --- Modern Switch --- */
+  .switch {
+    --switch-w: 2.5rem;
+    --switch-h: 1.25rem;
+    width: var(--switch-w);
+    height: var(--switch-h);
+    background-color: var(--color-gray-300);
+    border-radius: 100px;
+    position: relative;
+  }
+
+  .switch::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    inset-inline-start: 2px;
+    width: calc(var(--switch-h) - 4px);
+    height: calc(var(--switch-h) - 4px);
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.2s ease;
+  }
+
+  .switch:checked {
+    background-color: var(--select-color);
+  }
+
+  .switch:checked::after {
+    transform: translateX(calc(var(--switch-w) - var(--switch-h)));
+  }
+
+  [dir="rtl"] .switch:checked::after {
+    transform: translateX(calc((var(--switch-w) - var(--switch-h)) * -1));
+  }
+
+  /* --- COLOR VARIANTS --- */
+  /* These work for BOTH .checkbox and .switch! */
+  .select-secondary {
+    --select-color: var(--color-secondary);
+  }
+  .select-danger {
+    --select-color: var(--color-danger);
+  }
+  .select-accent {
+    --select-color: var(--color-accent);
+  }
+  .select-success {
+    --select-color: var(--color-success);
+  }
+  .select-warning {
+    --select-color: var(--color-warning);
+  }
+  .select-error {
+    --select-color: var(--color-error);
+  }
+
+  /* --- Radio Button Base --- */
+  .radio {
+    --select-color: var(--color-primary);
+
+    appearance: none;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid var(--input-border);
+    border-radius: 50%; /* Radios are always circles */
+    background-color: var(--input-bg);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: grid;
+    place-content: center;
+    position: relative;
+    outline: none;
+  }
+
+  /* The inner dot */
+  .radio::before {
+    content: "";
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    background-color: white;
+  }
+
+  /* Checked State */
+  .radio:checked {
+    background-color: var(--select-color);
+    border-color: var(--select-color);
+  }
+
+  .radio:checked::before {
+    transform: scale(1);
+  }
+
+  /* Focus Ring for Accessibility */
+  .radio:focus-visible {
+    box-shadow: 0 0 0 3px
+      color-mix(in srgb, var(--select-color) 20%, transparent);
+  }
+
+  /* --- Color Modifiers (Already defined for checkboxes, they work here too!) --- */
+  .radio-secondary {
+    --select-color: var(--color-secondary);
+  }
+  .radio-danger {
+    --select-color: var(--color-danger);
+  }
+  .radio-success {
+    --select-color: var(--color-success);
+  }
+
+  .checkbox:disabled,
+  .radio:disabled,
+  .switch:disabled {
+    --select-color: var(--color-disabled-border);
+    background-color: var(--color-disabled-bg);
+    border-color: var(--color-disabled-border);
+    cursor: not-allowed;
+  }
+
+  /* For the switch knob specifically */
+  .switch:disabled::after {
+    background-color: var(--color-disabled-text);
+  }
+}

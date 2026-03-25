@@ -1,15 +1,134 @@
+/* assets/css/components/inputs.css */
 @layer components {
-  .input-text {
-    border: 1px solid var(--color-gray-300);
-    border-radius: var(--radius-ui);
-    padding: calc(var(--spacing) * 2) calc(var(--spacing) * 3);
-    width: 100%;
-    outline: none;
-    transition: border-color 0.2s ease;
+  .selection-group {
+    display: inline-flex;
+    align-items: center;
+    gap: calc(var(--spacing) * 3);
+    cursor: pointer;
+    user-select: none;
   }
 
-  .input-text:focus {
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 2px var(--color-primary);
+  /* The base class: Clean, simple, and RTL-ready */
+  .input,
+  .textarea,
+  .select {
+    width: 100%;
+    background-color: var(--input-bg);
+    color: var(--color-text-main);
+
+    border: 1px solid var(--input-border);
+    border-radius: var(--radius-ui);
+
+    padding-block: var(--spacing-ui-y);
+    padding-inline: var(--spacing-ui-x);
+
+    /* Match the line-height of the button */
+    line-height: 1.5rem;
+
+    /* Using 'border-box' ensures padding doesn't add to the width/height unexpectedly */
+    box-sizing: border-box;
+
+    /* RTL-ready alignment */
+    text-align: start;
+    outline: none;
+    transition: all 0.2s ease;
+  }
+
+  /* --- Textarea Specifics --- */
+  .textarea {
+    min-height: 100px;
+    resize: vertical; /* Only allow vertical resizing to prevent layout break */
+  }
+
+  .input:focus,
+  .textarea:focus,
+  .select:focus {
+    border-color: var(--input-focus);
+    /* Creates a subtle glow using your color variable */
+    box-shadow: 0 0 0 2px
+      color-mix(in srgb, var(--input-focus) 20%, transparent);
+  }
+
+  .input::placeholder,
+  .textarea::placeholder {
+    color: var(--color-text-muted);
+  }
+
+  /* --- Label Style --- */
+  .label {
+    display: block;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-text-main);
+    margin-bottom: calc(var(--spacing) * 1.5);
+    text-align: start; /* Flips automatically for RTL */
+  }
+
+  /* --- Select Specifics --- */
+  .select {
+    appearance: none;
+    cursor: pointer;
+    background-color: var(--input-bg);
+
+    /* Standard SVG Arrow */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
+
+    /* LTR Position (Default) */
+    background-position: right 0.75rem center;
+    padding-inline-end: calc(var(--spacing) * 10);
+  }
+
+  /* Targeting the RTL state directly. 
+     Using :where() or [dir="rtl"] ensures this works when Nuxt 
+     toggles the dir attribute on a parent container.
+  */
+  [dir="rtl"] .select {
+    background-position: left 0.75rem center;
+  }
+
+  /* If the select itself has the dir attribute */
+  .select[dir="rtl"] {
+    background-position: left 0.75rem center;
+  }
+
+  /* Variant: Success using your --color-success */
+  .input-success,
+  .textarea-success,
+  .select-success {
+    --input-border: var(--color-success);
+    --input-focus: var(--color-success);
+  }
+
+  /* Variant: Warning using your --color-warning */
+  .input-warning,
+  .textarea-warning,
+  .select-warning {
+    --input-border: var(--color-warning);
+    --input-focus: var(--color-warning);
+  }
+
+  /* Variant: Error */
+  .input-error,
+  .textarea-error,
+  .select-error {
+    --input-border: var(--color-error);
+    --input-focus: var(--color-error);
+  }
+
+  .input:disabled,
+  .textarea:disabled,
+  .select:disabled {
+    background-color: var(--color-disabled-bg);
+    border-color: var(--color-disabled-border);
+    color: var(--color-disabled-text);
+    cursor: not-allowed;
+    opacity: 1; /* Override some browser defaults */
+  }
+
+  /* Specific fix for the Select arrow when disabled */
+  .select:disabled {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%239ca3af' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
   }
 }

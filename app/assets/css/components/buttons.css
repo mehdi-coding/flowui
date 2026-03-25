@@ -1,14 +1,87 @@
+/* assets/css/components/buttons.css */
 @layer components {
-  .btn-primary {
-    background-color: var(--color-primary);
-    color: var(--color-surface);
+  .btn {
+    /* 1. Define the local color variable (defaults to primary) */
+    --btn-color: var(--color-primary);
+    --btn-text: white;
+
+    /* 2. Base Structure */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    /* Use Logical Padding */
+    padding-block: var(--spacing-ui-y); /* Top/Bottom */
+    padding-inline: var(--spacing-ui-x); /* Start/End (Left/Right) */
+
+    /* Ensure the line-height doesn't break the uniform height */
+    line-height: 1.5rem;
+
     border-radius: var(--radius-ui);
-    padding: calc(var(--spacing) * 2) calc(var(--spacing) * 4);
-    font-weight: 500;
-    transition: background-color 0.2s ease;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+
+    /* 3. Solid Appearance (The Default) */
+    background-color: var(--btn-color);
+    color: var(--btn-text);
+
+    /* Ensures icons inside buttons have space on the correct side */
+    gap: calc(var(--spacing) * 2);
   }
 
-  .btn-primary:hover {
-    background-color: var(--color-primary-hover);
+  /* --- Hover State for Solid --- */
+  .btn:hover {
+    filter: brightness(92%);
+  }
+
+  .btn:focus-visible {
+    outline: 2px solid var(--btn-color);
+    outline-offset: 2px;
+  }
+
+  /* --- Outlined Variant --- */
+  /* This "opts-out" of the solid look by resetting background and border */
+  .btn-outline {
+    background-color: transparent;
+    border-color: var(--btn-color);
+    color: var(--btn-color);
+  }
+
+  .btn-outline:hover {
+    background-color: var(--btn-color);
+    color: var(--btn-text);
+    filter: none; /* Reset the brightness filter for better contrast */
+  }
+
+  /* --- Color Modifiers --- */
+  /* These only update the --btn-color variable. 
+     The .btn class handles the rest! */
+  .btn-secondary {
+    --btn-color: var(--color-secondary);
+  }
+  .btn-danger {
+    --btn-color: var(--color-danger);
+  }
+  .btn-accent {
+    --btn-color: var(--color-accent);
+  }
+  .btn-success {
+    --btn-color: var(--color-success);
+  }
+  .btn-error {
+    --btn-color: var(--color-error);
+  }
+  .btn-warning {
+    --btn-color: var(--color-warning);
+  }
+
+  .btn:disabled {
+    background-color: var(--color-disabled-bg);
+    border-color: var(--color-disabled-border);
+    color: var(--color-disabled-text);
+    cursor: not-allowed;
+    filter: none; /* Remove hover brightness filters */
+    pointer-events: none; /* Prevent clicks completely */
   }
 }
