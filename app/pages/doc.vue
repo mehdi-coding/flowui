@@ -146,11 +146,11 @@ const radioRows = [
 
             <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-6">
                 <div v-for="c in palette" :key="c.name" class="overflow-hidden  border border-zinc-200 bg-white">
-                    <div class="h-14 bg-primary" />
-                    <div class="p-2">
-                        <p class="text-xs font-semibold text-zinc-800 leading-snug">{{ c.name.split(' ')[0] }}</p>
-                        <p class="font-mono text-[0.65rem] text-zinc-400">{{ c.hex }}</p>
-                        <p class="font-mono text-[0.6rem] text-zinc-400 truncate">{{ c.token }}</p>
+                    <div class="swatch-color" :style="{ background: c.hex }"></div>
+                    <div class="p-2" :style="{ background: c.hex }">
+                        <p class="text-xs font-semibold text-white leading-snug">{{ c.name.split(' ')[0] }}</p>
+                        <p class="font-mono text-[0.65rem] text-white">{{ c.hex }}</p>
+                        <p class="font-mono text-[0.6rem] text-white truncate">{{ c.token }}</p>
                     </div>
                 </div>
             </div>

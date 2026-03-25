@@ -1,0 +1,89 @@
+/* assets/css/components/modals.css */
+@layer components {
+  .modal {
+    /* --- Base Reset for <dialog> --- */
+    padding: 0;
+    border: none;
+    background-color: var(--color-surface);
+    color: var(--color-text-main);
+    border-radius: var(--radius-ui);
+
+    /* A deeper shadow to lift it off the page */
+    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+
+    /* Sizing & Centering */
+    width: 100%;
+    max-width: 32rem; /* Standard max-width */
+    margin: auto; /* Native <dialog> centering */
+
+    /* Layout */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Keeps header/footer inside the radius */
+
+    /* --- Animations --- */
+    transition:
+      opacity 0.2s ease-out,
+      transform 0.2s ease-out,
+      display 0.2s allow-discrete,
+      overlay 0.2s allow-discrete;
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  /* When the native dialog is opened */
+  .modal[open] {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* --- The Native Backdrop Overlay --- */
+  .modal::backdrop {
+    background-color: rgb(0 0 0 / 0.5);
+    backdrop-filter: blur(4px); /* A nice modern touch */
+    transition:
+      display 0.2s allow-discrete,
+      overlay 0.2s allow-discrete,
+      background-color 0.2s ease-out;
+    opacity: 0;
+  }
+
+  .modal[open]::backdrop {
+    opacity: 1;
+  }
+
+  /* --- Modern CSS: Animate from display: none --- */
+  @starting-style {
+    .modal[open] {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    .modal[open]::backdrop {
+      opacity: 0;
+    }
+  }
+
+  /* --- Modal Structure (Similar to Cards) --- */
+  .modal-header {
+    padding: calc(var(--spacing) * 6);
+    border-bottom: 1px solid var(--color-gray-200);
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Pushes the close button to the right */
+  }
+
+  .modal-body {
+    padding: calc(var(--spacing) * 6);
+    overflow-y: auto; /* Enables scrolling if content gets too tall */
+    max-height: 60vh;
+  }
+
+  .modal-footer {
+    padding: calc(var(--spacing) * 6);
+    background-color: var(--color-surface-sunken);
+    border-top: 1px solid var(--color-gray-200);
+    display: flex;
+    justify-content: flex-end; /* Aligns buttons to the right */
+    gap: calc(var(--spacing) * 3);
+  }
+}

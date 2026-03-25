@@ -24,7 +24,7 @@
 
   /* --- 3. Semantic Surfaces (Fixes "white") --- */
   --color-surface: #ffffff;
-  --color-surface-sunken: #f8fafc; /* For subtle offsets */
+  --color-surface-sunken: #f8fafc; /* For subtle offsets and cards*/
   --color-surface-muted: var(--color-gray-100);
 
   --color-text-main: var(--color-gray-900);
@@ -62,9 +62,9 @@
 @import "./components/inputs.css";
 @import "./components/selection.css";
 @import "./components/typography.css";
-/* As your project grows, you can easily add more here: */
-/* @import "./components/cards.css"; */
-/* @import "./components/modals.css"; */ /* --- GLOBAL COLOR MODIFIERS --- */
+@import "./components/cards.css";
+@import "./components/modals.css";
+
 @layer components {
   .primary {
     --ui-color: var(--color-primary);

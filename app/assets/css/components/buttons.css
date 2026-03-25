@@ -5,18 +5,27 @@
     --btn-color: var(--ui-color, var(--color-primary));
     --btn-text: var(--color-on-primary);
 
+    /* --- NEW: Scale Variables --- */
+    --btn-scale: 1; /* Default scale */
+    --btn-radius-factor: 1; /* Default multiplier */
+
     /* 2. Base Structure */
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    /* Use Logical Padding */
-    padding-block: var(--spacing-ui-y); /* Top/Bottom */
-    padding-inline: var(--spacing-ui-x); /* Start/End (Left/Right) */
+
+    /* Font and PADDINGS are now relative to the scale */
+    font-size: calc(var(--text-base) * var(--btn-scale));
+    padding-block: calc(var(--spacing-ui-y) * var(--btn-scale));
+    padding-inline: calc(var(--spacing-ui-x) * var(--btn-scale));
 
     /* Ensure the line-height doesn't break the uniform height */
-    line-height: 1.5rem;
+    --btn-line-height: calc(1.5rem * var(--btn-scale));
+    line-height: var(--btn-line-height);
 
-    border-radius: var(--radius-ui);
+    /* --- The Dynamic Radius --- */
+    border-radius: calc(var(--radius-ui) * var(--btn-radius-factor));
+
     font-weight: 600;
     transition: all 0.2s ease;
     cursor: pointer;
@@ -27,7 +36,7 @@
     color: var(--btn-text);
 
     /* Ensures icons inside buttons have space on the correct side */
-    gap: calc(var(--spacing) * 2);
+    gap: calc(var(--spacing) * 2 * var(--btn-scale));
   }
 
   /* --- Hover State for Solid --- */
@@ -60,10 +69,42 @@
     color: var(--color-disabled-text);
     cursor: not-allowed;
     filter: none; /* Remove hover brightness filters */
-    pointer-events: none; /* Prevent clicks completely */
+  }
+
+  /* Ensure outline-disabled stays transparent */
+  .btn-outline:disabled {
+    background-color: transparent;
   }
 
   .btn:active {
     transform: scale(0.98); /* gives nice press feedback */
+  }
+
+  /* --- Size Variants --- */
+
+  .btn-xs {
+    --btn-scale: 0.7;
+    --btn-radius-factor: 0.5; /* Sharper corners for tiny buttons */
+  }
+
+  .btn-sm {
+    --btn-scale: 0.85;
+    --btn-radius-factor: 0.75;
+  }
+
+  /* .btn (Default) is scale 1, factor 1 */
+
+  .btn-lg {
+    --btn-scale: 1.25;
+    --btn-radius-factor: 1.25;
+  }
+
+  .btn-xl {
+    --btn-scale: 1.5;
+    --btn-radius-factor: 2; /* Very rounded/Pill-like for huge buttons */
+  }
+
+  .btn-rounded {
+    border-radius: 100px;
   }
 }
