@@ -8,7 +8,7 @@ const toggleDirection = () => {
 
 <template>
     <div class="fixed top-4 right-4 z-50">
-        <button @click="toggleDirection" class="btn btn-secondary">
+        <button @click="toggleDirection" class="btn secondary">
             Switch to {{ direction === 'ltr' ? 'RTL (Arabic)' : 'LTR (English/French)' }}
         </button>
 
@@ -30,9 +30,9 @@ const toggleDirection = () => {
                 <h2 class="text-lg font-semibold border-s-4 border-primary ps-3">1. Opinionated Buttons</h2>
                 <div class="flex flex-wrap gap-4">
                     <button class="btn">Default Solid</button>
-                    <button class="btn btn-danger">Solid Danger</button>
+                    <button class="btn danger">Solid Danger</button>
                     <button class="btn btn-outline">Default Outline</button>
-                    <button class="btn btn-outline btn-success ms-auto">Aligned to End (ms-auto)</button>
+                    <button class="btn btn-outline success ms-auto">Aligned to End (ms-auto)</button>
                 </div>
             </section>
 
@@ -71,13 +71,13 @@ const toggleDirection = () => {
 
                 <div class="space-y-1">
                     <label class="text-sm font-medium">Password</label>
-                    <input type="password" class="input input-error" value="123" />
+                    <input type="password" class="input error" value="123" />
                     <p class="text-xs text-error">Password too short</p>
                 </div>
 
                 <div class="space-y-1">
                     <label class="text-sm font-medium">Coupon Code</label>
-                    <input type="text" class="input input-success" value="SAVE20" />
+                    <input type="text" class="input success" value="SAVE20" />
                 </div>
 
             </section>
@@ -91,7 +91,7 @@ const toggleDirection = () => {
                         <input type="text" class="input" placeholder="Type here..." />
                     </div>
 
-                    <button class="btn btn-accent">
+                    <button class="btn accent">
                         Search / بحث
                     </button>
                 </div>
@@ -122,7 +122,7 @@ const toggleDirection = () => {
 
                     <div class="flex justify-end gap-3">
                         <button class="btn btn-outline">Cancel</button>
-                        <button class="btn btn-primary">Submit Form</button>
+                        <button class="btn primary">Submit Form</button>
                     </div>
                 </div>
             </section>
@@ -140,12 +140,12 @@ const toggleDirection = () => {
                         </label>
 
                         <label class="selection-group">
-                            <input type="checkbox" class="checkbox select-secondary" checked />
+                            <input type="checkbox" class="checkbox secondary" checked />
                             <span>Secondary / ثانوي</span>
                         </label>
 
                         <label class="selection-group">
-                            <input type="checkbox" class="checkbox select-danger" checked />
+                            <input type="checkbox" class="checkbox danger" checked />
                             <span>Danger / خطر</span>
                         </label>
                     </div>
@@ -153,17 +153,17 @@ const toggleDirection = () => {
                     <div class="space-y-4">
                         <h3 class="text-sm font-bold uppercase text-gray-400">Switches</h3>
                         <label class="selection-group">
-                            <input type="checkbox" class="switch select-success" checked />
+                            <input type="checkbox" class="switch success" checked />
                             <span>Success / نجاح</span>
                         </label>
 
                         <label class="selection-group">
-                            <input type="checkbox" class="switch select-warning" checked />
+                            <input type="checkbox" class="switch warning" checked />
                             <span>Warning / تحذير</span>
                         </label>
 
                         <label class="selection-group">
-                            <input type="checkbox" class="switch select-accent" checked />
+                            <input type="checkbox" class="switch accent" checked />
                             <span>Accent / تمييز</span>
                         </label>
                     </div>
@@ -183,12 +183,12 @@ const toggleDirection = () => {
                         </label>
 
                         <label class="selection-group">
-                            <input type="radio" name="test-group" class="radio radio-secondary" />
+                            <input type="radio" name="test-group" class="radio secondary" />
                             <span class="text-sm font-medium">Option Two (Secondary)</span>
                         </label>
 
                         <label class="selection-group">
-                            <input type="radio" name="test-group" class="radio radio-danger" />
+                            <input type="radio" name="test-group" class="radio danger" />
                             <span class="text-sm font-medium">Option Three (Danger)</span>
                         </label>
                     </div>
@@ -199,7 +199,7 @@ const toggleDirection = () => {
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div class="space-y-4">
-                        <button class="btn btn-primary" disabled>Disabled Button</button>
+                        <button class="btn primary" disabled>Disabled Button</button>
                         <input type="text" class="input" disabled value="Read only data" />
                         <select class="select" disabled>
                             <option>Disabled Select</option>

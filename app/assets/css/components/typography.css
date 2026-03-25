@@ -1,0 +1,83 @@
+/* assets/css/components/typography.css */
+@layer components {
+  /* --- Base Reset for Headings --- */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0;
+    margin-bottom: 0.1rem;
+    /* Use the global --ui-color if present (e.g., for a red heading) */
+    --heading-color: var(--ui-color, var(--color-text-main));
+    color: var(--heading-color);
+    scroll-margin-top: 5rem; /* nice anchor-link offset */
+  }
+
+  /* --- Opinionated Sizes using Tailwind Variables --- */
+  h1 {
+    font-size: var(--text-4xl);
+    letter-spacing: -0.02em;
+    margin-bottom: calc(var(--spacing) * 5); /* Larger gap for H1 */
+  }
+  h2 {
+    font-size: var(--text-3xl);
+    letter-spacing: -0.01em;
+    margin-bottom: calc(var(--spacing) * 4);
+  }
+  h3 {
+    font-size: var(--text-2xl);
+    margin-bottom: calc(var(--spacing) * 4);
+  }
+  h4 {
+    font-size: var(--text-xl);
+    margin-bottom: calc(var(--spacing) * 4);
+  }
+  h5 {
+    font-size: var(--text-lg);
+    margin-bottom: calc(var(--spacing) * 3);
+  }
+  h6 {
+    font-size: var(--text-base);
+    margin-bottom: calc(var(--spacing) * 2);
+  }
+
+  /* --- Body Text --- */
+  p {
+    --p-color: var(--ui-color, var(--color-text-main));
+    color: var(--heading-color);
+
+    font-size: var(--text-base);
+    line-height: 1.6;
+    color: var(--p-color);
+    margin-bottom: calc(var(--spacing) * 4);
+  }
+
+  .text-muted {
+    color: var(--color-text-muted);
+  }
+
+  /* --- Lead/Intro Text --- */
+  .lead {
+    font-size: var(--text-lg);
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  /* --- Links --- */
+  a {
+    --link-color: var(--ui-color, var(--color-primary));
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.2s ease;
+  }
+
+  a:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+  }
+}

@@ -1,19 +1,38 @@
 <template>
-    <div class="m-12">
-        <div class="space-y-1">
-            <label class="text-sm font-medium">Username</label>
-            <input type="text" class="input" placeholder="Enter username..." />
+    <div class="p-10 space-y-8 max-w-xl mx-auto bg-surface text-main">
+
+        <div>
+            <label class="label">Username</label>
+            <input type="text" class="input text-xs" placeholder="Type your username..." />
         </div>
 
-        <div class="space-y-1">
-            <label class="text-sm font-medium">Password</label>
-            <input type="password" class="input input-error" value="123" />
-            <p class="text-xs text-error">Password too short</p>
+        <div>
+            <label class="label danger">Email Address</label>
+            <input type="email" class="input danger" value="invalid-email" />
+            <p class="text-xs mt-1 text-danger">Please enter a valid email.</p>
         </div>
 
-        <div class="space-y-1">
-            <label class="text-sm font-medium">Coupon Code</label>
-            <input type="text" class="input input-success" value="SAVE20" />
+        <div>
+            <label class="label success">Account Type</label>
+            <select class="select success">
+                <option>Personal Account</option>
+                <option selected>Business Account (Verified)</option>
+            </select>
         </div>
+
+        <div>
+            <label class="label warning">Bio Description</label>
+            <textarea class="textarea warning" placeholder="Tell us about yourself..."></textarea>
+        </div>
+
+        <div>
+            <label class="label">System ID (Read Only)</label>
+            <input type="text" class="input" disabled value="ID-99021-X" />
+        </div>
+
+        <input class="input" placeholder="I have a gray border">
+
+        <input class="input danger" value="I have a red border">
+
     </div>
 </template>

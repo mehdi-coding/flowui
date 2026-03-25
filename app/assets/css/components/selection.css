@@ -3,10 +3,14 @@
   /* --- Base Logic for Selection Elements --- */
   .checkbox,
   .switch {
-    --select-color: var(--color-primary); /* Default */
+    --input-border: var(--ui-color, var(--input-border-default));
+    --input-focus: var(--ui-color, var(--input-focus-default));
+
+    /* Listen for the global --ui-color, default to primary */
+    --select-color: var(--ui-color, var(--color-primary));
     appearance: none;
     cursor: pointer;
-    background-color: var(--input-bg);
+    background-color: var(--color-input-bg);
     transition: all 0.2s ease;
     outline: none;
   }
@@ -27,7 +31,7 @@
     height: 0.65rem;
     transform: scale(0);
     transition: 120ms transform ease-in-out;
-    box-shadow: inset 1em 1em white;
+    box-shadow: inset 1em 1em var(--color-on-primary);
     clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
   }
 
@@ -58,7 +62,7 @@
     inset-inline-start: 2px;
     width: calc(var(--switch-h) - 4px);
     height: calc(var(--switch-h) - 4px);
-    background-color: white;
+    background-color: var(--color-on-primary);
     border-radius: 50%;
     transition: transform 0.2s ease;
   }
@@ -75,37 +79,17 @@
     transform: translateX(calc((var(--switch-w) - var(--switch-h)) * -1));
   }
 
-  /* --- COLOR VARIANTS --- */
-  /* These work for BOTH .checkbox and .switch! */
-  .select-secondary {
-    --select-color: var(--color-secondary);
-  }
-  .select-danger {
-    --select-color: var(--color-danger);
-  }
-  .select-accent {
-    --select-color: var(--color-accent);
-  }
-  .select-success {
-    --select-color: var(--color-success);
-  }
-  .select-warning {
-    --select-color: var(--color-warning);
-  }
-  .select-error {
-    --select-color: var(--color-error);
-  }
-
   /* --- Radio Button Base --- */
   .radio {
-    --select-color: var(--color-primary);
+    /* Listen for the global --ui-color, default to primary */
+    --select-color: var(--ui-color, var(--color-primary));
 
     appearance: none;
     width: 1.25rem;
     height: 1.25rem;
     border: 2px solid var(--input-border);
     border-radius: 50%; /* Radios are always circles */
-    background-color: var(--input-bg);
+    background-color: var(--color-input-bg);
     cursor: pointer;
     transition: all 0.2s ease;
     display: grid;
@@ -122,7 +106,7 @@
     border-radius: 50%;
     transform: scale(0);
     transition: 120ms transform ease-in-out;
-    background-color: white;
+    background-color: var(--color-on-primary);
   }
 
   /* Checked State */
@@ -137,19 +121,14 @@
 
   /* Focus Ring for Accessibility */
   .radio:focus-visible {
-    box-shadow: 0 0 0 3px
-      color-mix(in srgb, var(--select-color) 20%, transparent);
+    outline: 2px solid var(--select-color);
+    outline-offset: 2px;
   }
 
-  /* --- Color Modifiers (Already defined for checkboxes, they work here too!) --- */
-  .radio-secondary {
-    --select-color: var(--color-secondary);
-  }
-  .radio-danger {
-    --select-color: var(--color-danger);
-  }
-  .radio-success {
-    --select-color: var(--color-success);
+  .checkbox:focus-visible,
+  .switch:focus-visible {
+    outline: 2px solid var(--select-color);
+    outline-offset: 2px;
   }
 
   .checkbox:disabled,

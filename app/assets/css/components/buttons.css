@@ -1,9 +1,9 @@
 /* assets/css/components/buttons.css */
 @layer components {
   .btn {
-    /* 1. Define the local color variable (defaults to primary) */
-    --btn-color: var(--color-primary);
-    --btn-text: white;
+    /* Listen for the global --ui-color, default to primary */
+    --btn-color: var(--ui-color, var(--color-primary));
+    --btn-text: var(--color-on-primary);
 
     /* 2. Base Structure */
     display: inline-flex;
@@ -54,28 +54,6 @@
     filter: none; /* Reset the brightness filter for better contrast */
   }
 
-  /* --- Color Modifiers --- */
-  /* These only update the --btn-color variable. 
-     The .btn class handles the rest! */
-  .btn-secondary {
-    --btn-color: var(--color-secondary);
-  }
-  .btn-danger {
-    --btn-color: var(--color-danger);
-  }
-  .btn-accent {
-    --btn-color: var(--color-accent);
-  }
-  .btn-success {
-    --btn-color: var(--color-success);
-  }
-  .btn-error {
-    --btn-color: var(--color-error);
-  }
-  .btn-warning {
-    --btn-color: var(--color-warning);
-  }
-
   .btn:disabled {
     background-color: var(--color-disabled-bg);
     border-color: var(--color-disabled-border);
@@ -83,5 +61,9 @@
     cursor: not-allowed;
     filter: none; /* Remove hover brightness filters */
     pointer-events: none; /* Prevent clicks completely */
+  }
+
+  .btn:active {
+    transform: scale(0.98); /* gives nice press feedback */
   }
 }

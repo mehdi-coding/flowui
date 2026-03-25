@@ -8,6 +8,7 @@
   --color-verdigris: #009a8e; /* Teal-ish */
   --color-orange: #fd8b1f; /*  Dark Orange (Primary) */
   --color-coral: #ff7b47; /*  Coral Glow */
+  --color-attention: #e83a23;
   --color-dark-teal: #00404c; /*  Deep Teal */
   --color-amber: #ffc22f; /*  Amber Gold */
   --color-gray: #3f3f46;
@@ -15,19 +16,21 @@
   /* Semantic tokens */
   --color-primary: var(--color-orange);
   --color-secondary: var(--color-verdigris);
-  --color-danger: var(--color-coral);
+  --color-danger: var(--color-attention);
   --color-accent: var(--color-dark-teal);
   --color-success: var(--color-verdigris);
-  --color-error: var(--color-coral);
+  --color-error: var(--color-attention);
   --color-warning: var(--color-amber);
 
-  --color-primary-hover: color-mix(in srgb, var(--color-primary), black 10%);
-
   /* --- 3. Semantic Surfaces (Fixes "white") --- */
-  --color-surface: #f8fafc;
+  --color-surface: #ffffff;
+  --color-surface-sunken: #f8fafc; /* For subtle offsets */
   --color-surface-muted: var(--color-gray-100);
+
   --color-text-main: var(--color-gray-900);
   --color-text-muted: var(--color-gray-500);
+  /* 3. The "White" on top of Buttons or Selection States */
+  --color-on-primary: #ffffff; /* Text/Icons on primary/danger backgrounds */
 
   --color-disabled-bg: var(--color-gray-100);
   --color-disabled-text: var(--color-gray-400);
@@ -43,9 +46,9 @@
   );
 
   /* Input Variables */
-  --input-border: var(--color-gray-300);
-  --input-focus: var(--color-primary);
-  --input-bg: var(--color-surface);
+  --input-border-default: var(--color-gray-300);
+  --input-focus-default: var(--color-primary);
+  --color-input-bg: var(--color-surface);
 
   /* Uniform vertical padding for all UI elements */
   --spacing-ui-y: calc(var(--spacing) * 1.5); /* Equivalent to 10px / py-2.5 */
@@ -58,7 +61,30 @@
 @import "./components/buttons.css";
 @import "./components/inputs.css";
 @import "./components/selection.css";
-
+@import "./components/typography.css";
 /* As your project grows, you can easily add more here: */
 /* @import "./components/cards.css"; */
-/* @import "./components/modals.css"; */
+/* @import "./components/modals.css"; */ /* --- GLOBAL COLOR MODIFIERS --- */
+@layer components {
+  .primary {
+    --ui-color: var(--color-primary);
+  }
+  .secondary {
+    --ui-color: var(--color-secondary);
+  }
+  .danger {
+    --ui-color: var(--color-danger);
+  }
+  .accent {
+    --ui-color: var(--color-accent);
+  }
+  .success {
+    --ui-color: var(--color-success);
+  }
+  .error {
+    --ui-color: var(--color-error);
+  }
+  .warning {
+    --ui-color: var(--color-warning);
+  }
+}
