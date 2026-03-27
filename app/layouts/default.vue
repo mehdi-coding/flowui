@@ -23,22 +23,27 @@
                 </button>
             </div>
             <nav class="sidebar-nav">
-                <NuxtLink to="/" class="nav-item a" @click="isMobileOpen = false">
-                    <LayoutDashboard class="icon" />
-                    <span class="nav-label" v-show="!isCollapsed">{{ $t('dashboard') }}</span>
-                </NuxtLink>
-                <NuxtLink to="/users" class="nav-item a" @click="isMobileOpen = false">
-                    <Users class="icon" />
-                    <span class="nav-label" v-show="!isCollapsed">{{ $t('users') }}</span>
-                </NuxtLink>
-                <NuxtLink to="/surveys" class="nav-item a" @click="isMobileOpen = false">
-                    <ClipboardList class="icon" />
-                    <span class="nav-label" v-show="!isCollapsed">{{ $t('surveys') }}</span>
-                </NuxtLink>
-                <NuxtLink to="/components/tabs" class="nav-item a" @click="isMobileOpen = false">
-                    <ClipboardList class="icon" />
-                    <span class="nav-label" v-show="!isCollapsed">Tabs</span>
-                </NuxtLink>
+                <div class="nav-group" v-for="item in navItems" :key="item.to">
+                    <button class="nav-item w-full" @click="toggleNavComponent(item)" v-if="item.children"
+                        :class="{ 'parent-active': isChildActive(item) }">
+                        <component :is="item.icon" class="icon" />
+                        <span class="nav-label" v-show="!isCollapsed">{{ $t(item.label) }}</span>
+
+                        <ChevronDown v-show="!isCollapsed" class="icon-sm ms-auto transition-transform"
+                            :class="{ 'rotate-180': item.isComponentsOpen }" v-if="item.children" />
+                    </button>
+                    <NuxtLink :to="item.to" class="nav-item a" @click="isMobileOpen = false" v-else>
+                        <component :is="item.icon" class="icon" />
+                        <span class="nav-label" v-show="!isCollapsed">{{ $t(item.label) }}</span>
+                    </NuxtLink>
+
+                    <div class="sub-nav" v-if="item.isComponentsOpen && !isCollapsed && item.children">
+                        <NuxtLink :to="child.to" class="sub-nav-item" v-for="child in item.children" :key="child.to"
+                            @click="isMobileOpen = false">{{
+                                child.label }}
+                        </NuxtLink>
+                    </div>
+                </div>
             </nav>
 
             <div class="sidebar-footer">
@@ -97,25 +102,68 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import {
     Menu, LayoutDashboard, Users, ClipboardList,
-    Settings, LogOut, Globe, User, ChevronUp, ChevronRight, ChevronLeft
+    Settings, LogOut, Globe, User, ChevronUp, ChevronDown, ChevronRight, ChevronLeft, Layers, BookOpen
 } from '@lucide/vue';
 const { locale } = useI18n()
+
+/* ---------------- NAVIGATION ---------------- */
+const navItems = ref([
+    {
+        label: 'dashboard',
+        icon: LayoutDashboard,
+        to: '/',
+        isComponentsOpen: false
+    },
+    {
+        label: 'users',
+        icon: Users,
+        to: '/users',
+        isComponentsOpen: false
+    },
+    {
+        label: 'surveys',
+        icon: ClipboardList,
+        to: '/surveys',
+        isComponentsOpen: false
+    },
+    {
+        label: 'components',
+        icon: Layers,
+        children: [
+            { label: 'tabs', to: '/components/tabs' },
+            { label: 'modals', to: '/components/modals' }
+        ],
+        isComponentsOpen: false
+    },
+    {
+        label: 'Examples',
+        icon: BookOpen,
+        children: [
+            { label: 'Direction', to: '/examples/direction' },
+            { label: 'Login', to: '/examples/login' }
+        ],
+        isComponentsOpen: false
+    }
+])
 
 // Component ref
 const languageModalRef = ref(null)
 
 const route = useRoute()
+// Helper function to check if any child of a nav item is currently active
+const isChildActive = (item) => {
+    if (!item.children) return false;
+    return item.children.some(child => route.path === child.to);
+}
 
-const selectedLang = ref(locale.value)
+const selectedLang = computed(() => locale.value);
 
 const isCollapsed = ref(false);
 const isMobileOpen = ref(false);
 const isUserMenuOpen = ref(false);
-// Add this near your other refs
-const isComponentsOpen = ref(false);
 
 const toggleSidebar = () => isCollapsed.value = !isCollapsed.value;
 const toggleMobileSidebar = () => {
@@ -130,6 +178,14 @@ const openLanguageModal = () => {
     // Trigger the 'show' method exposed by the child component
     languageModalRef.value?.show();
 };
+
+const toggleNavComponent = (item) => {
+    if (isCollapsed.value) {
+        isCollapsed.value = false
+        item.isComponentsOpen = true
+    }
+    else item.isComponentsOpen = !item.isComponentsOpen
+}
 
 </script>
 
@@ -228,6 +284,11 @@ const openLanguageModal = () => {
     /* RTL Aware */
 }
 
+.sub-item {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
+}
+
 
 /* Specific overrides for Collapsed State */
 .collapsed .nav-item {
@@ -242,11 +303,6 @@ const openLanguageModal = () => {
 /* Ensure the icon itself doesn't have stray margins */
 .collapsed .nav-item .icon {
     margin: 0;
-}
-
-.nav-item:hover:not(.router-link-active) {
-    background-color: color-mix(in srgb, var(--color-primary) 10%, transparent);
-    color: var(--color-primary);
 }
 
 .router-link-active {
@@ -337,7 +393,79 @@ const openLanguageModal = () => {
     margin-inline-start: auto;
 }
 
-/* RTL Aware margin */
+/* --- The Wrapper for Parent + Children --- */
+.nav-group {
+    display: flex;
+    flex-direction: column;
+    /* Stacks the button and the sub-menu */
+    width: 100%;
+}
+
+/* --- The Sub-Nav Container --- */
+.sub-nav {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 2.25rem);
+    margin-inline-start: 2.25rem;
+
+    /* Indentation: Indent only when the sidebar is NOT collapsed */
+    margin-inline-start: 2.25rem;
+    padding-inline-start: 0.75rem;
+    border-inline-start: 1px solid var(--color-gray-200);
+
+    /* Spacing between sub-items */
+    gap: 0.25rem;
+    padding-block: 0.5rem;
+
+    /* Ensure internal items don't cause overflow */
+    box-sizing: border-box;
+}
+
+/* --- Individual Sub-Links --- */
+.sub-nav-item {
+    display: flex;
+    /* Ensures it fills the width */
+    width: 100%;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius-ui);
+
+    font-size: 0.875rem;
+    /* Slightly smaller than main nav */
+    color: var(--color-text-muted);
+    text-decoration: none;
+    /* FIX: Allow text to shrink or truncate if space is tight */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    /* Prevents text from wrapping to a second line */
+}
+
+/* --- THE DESKTOP COLLAPSE FIX --- */
+/* If the sidebar is collapsed (isCollapsed = true), hide the sub-menu 
+           to prevent UI breakage in the small 80px sidebar. */
+.sidebar.collapsed .sub-nav {
+    display: none !important;
+}
+
+/* Active State for Sub-Link */
+.sub-nav-item.router-link-active {
+    color: var(--color-on-primary);
+    background-color: var(--color-primary);
+    font-weight: 600;
+}
+
+/* --- Parent Active Style --- */
+/* This styles the parent button when a child is selected */
+.parent-active {
+    color: var(--color-primary) !important;
+    background-color: color-mix(in srgb, var(--color-primary) 10%, transparent) !important;
+}
+
+/* Optional: Make the icon color change too */
+.parent-active .icon {
+    color: var(--color-primary);
+}
 
 /* --- Mobile Breakpoint --- */
 @media (max-width: 768px) {
@@ -373,6 +501,21 @@ const openLanguageModal = () => {
 
     .mobile-menu-btn {
         display: block;
+    }
+}
+
+/* --- Desktop ONLY Hover States --- */
+/* This prevents the "sticky hover" bug on mobile touch screens */
+@media (hover: hover) {
+    .nav-item:hover:not(.router-link-active) {
+        background-color: color-mix(in srgb, var(--color-primary) 10%, transparent);
+        color: var(--color-primary);
+    }
+
+    /* Add this here too so sub-items don't get stuck on mobile either */
+    .sub-nav-item:hover:not(.router-link-active) {
+        color: var(--color-primary);
+        background-color: color-mix(in srgb, var(--color-primary) 5%, transparent);
     }
 }
 </style>
