@@ -1,4 +1,5 @@
 <template>
+
     <div class="space-y-8">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div class="card primary">
@@ -45,7 +46,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="i in 5" :key="i" class="hover:bg-gray-50">
+                            <tr v-for="i in 15" :key="i" class="hover:bg-gray-50">
                                 <td class="p-4 border-b">User #{{ i }}24</td>
                                 <td class="p-4 border-b">Customer Feedback</td>
                                 <td class="p-4 border-b">
@@ -72,4 +73,5 @@
             </div>
         </div>
     </div>
+
 </template>

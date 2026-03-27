@@ -12,27 +12,25 @@
     box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
 
     /* Sizing & Centering */
-    width: 100%;
+    width: calc(100% - 2rem); /* This creates a 1rem gap on both sides */
     max-width: 32rem; /* Standard max-width */
     margin: auto; /* Native <dialog> centering */
+    /* 3. Safety: Ensure it doesn't touch the top/bottom on small phones */
+    max-height: calc(100vh - 4rem);
 
     /* Layout */
-    display: flex;
     flex-direction: column;
     overflow: hidden; /* Keeps header/footer inside the radius */
 
     /* --- Animations --- */
-    transition:
-      opacity 0.2s ease-out,
-      transform 0.2s ease-out,
-      display 0.2s allow-discrete,
-      overlay 0.2s allow-discrete;
+    transition: all 0.2s ease;
     opacity: 0;
     transform: scale(0.95);
   }
 
   /* When the native dialog is opened */
   .modal[open] {
+    display: flex;
     opacity: 1;
     transform: scale(1);
   }
@@ -41,10 +39,7 @@
   .modal::backdrop {
     background-color: rgb(0 0 0 / 0.5);
     backdrop-filter: blur(4px); /* A nice modern touch */
-    transition:
-      display 0.2s allow-discrete,
-      overlay 0.2s allow-discrete,
-      background-color 0.2s ease-out;
+    transition: all 0.2s ease;
     opacity: 0;
   }
 
@@ -85,5 +80,19 @@
     display: flex;
     justify-content: flex-end; /* Aligns buttons to the right */
     gap: calc(var(--spacing) * 3);
+  }
+  @media (max-width: 640px) {
+    .modal_down {
+      width: 100%;
+      max-width: none;
+      margin-bottom: 0; /* Align to bottom */
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      transform: translateY(100%); /* Slide from bottom */
+    }
+
+    .modal_down[open] {
+      transform: translateY(0);
+    }
   }
 }

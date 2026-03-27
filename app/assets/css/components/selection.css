@@ -2,7 +2,8 @@
 @layer components {
   /* --- Base Logic for Selection Elements --- */
   .checkbox,
-  .switch {
+  .switch,
+  .radio {
     --input-border: var(--ui-color, var(--input-border-default));
     --input-focus: var(--ui-color, var(--input-focus-default));
 
@@ -81,16 +82,11 @@
 
   /* --- Radio Button Base --- */
   .radio {
-    /* Listen for the global --ui-color, default to primary */
-    --select-color: var(--ui-color, var(--color-primary));
-
-    appearance: none;
     width: 1.25rem;
     height: 1.25rem;
     border: 2px solid var(--input-border);
     border-radius: 50%; /* Radios are always circles */
     background-color: var(--color-input-bg);
-    cursor: pointer;
     transition: all 0.2s ease;
     display: grid;
     place-content: center;

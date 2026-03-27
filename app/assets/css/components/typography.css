@@ -1,12 +1,12 @@
 /* assets/css/components/typography.css */
 @layer components {
   /* --- Base Reset for Headings --- */
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  .h1,
+  .h2,
+  .h3,
+  .h4,
+  .h5,
+  .h6 {
     font-weight: 700;
     line-height: 1.1;
     margin: 0;
@@ -19,35 +19,35 @@
   }
 
   /* --- Opinionated Sizes using Tailwind Variables --- */
-  h1 {
+  .h1 {
     font-size: var(--text-4xl);
     letter-spacing: -0.02em;
     margin-bottom: calc(var(--spacing) * 3); /* Larger gap for H1 */
   }
-  h2 {
+  .h2 {
     font-size: var(--text-3xl);
     letter-spacing: -0.01em;
     margin-bottom: calc(var(--spacing) * 3);
   }
-  h3 {
+  .h3 {
     font-size: var(--text-2xl);
     margin-bottom: calc(var(--spacing) * 2);
   }
-  h4 {
+  .h4 {
     font-size: var(--text-xl);
     margin-bottom: calc(var(--spacing) * 2);
   }
-  h5 {
+  .h5 {
     font-size: var(--text-lg);
     margin-bottom: calc(var(--spacing) * 1);
   }
-  h6 {
+  .h6 {
     font-size: var(--text-base);
     margin-bottom: calc(var(--spacing) * 1);
   }
 
   /* --- Body Text --- */
-  p {
+  .p {
     --p-color: var(--ui-color, var(--color-text-main));
     color: var(--p-color);
 
@@ -68,7 +68,7 @@
   }
 
   /* --- Links --- */
-  a {
+  .a {
     --link-color: var(--ui-color, var(--color-primary));
     color: var(--link-color);
     text-decoration: none;
@@ -76,7 +76,7 @@
     transition: opacity 0.2s ease;
   }
 
-  a:hover {
+  .a:hover {
     opacity: 0.8;
     text-decoration: underline;
   }
