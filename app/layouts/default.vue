@@ -1,3 +1,4 @@
+<!-- app/layouts/default.vue -->
 <template>
     <div class="app-wrapper">
 
@@ -12,10 +13,10 @@
 
                 <button class="hidden-mobile cursor-pointer" @click="toggleSidebar">
                     <Menu v-if="!isCollapsed" />
-                    <ChevronRight v-if="isCollapsed && language != 'ar'" size="20"
+                    <ChevronRight v-if="isCollapsed && selectedLang != 'ar'" size="20"
                         class="fixed top-4 ms-3 toggle-icon-collapsed border text-gray-400 rounded-sm bg-surface"
                         :strokeWidth="3" />
-                    <ChevronLeft v-if="isCollapsed && language == 'ar'" size="20"
+                    <ChevronLeft v-if="isCollapsed && selectedLang == 'ar'" size="20"
                         class="fixed top-4 ms-3 toggle-icon-collapsed border text-gray-400 rounded-sm bg-surface"
                         :strokeWidth="3" />
 
@@ -24,15 +25,19 @@
             <nav class="sidebar-nav">
                 <NuxtLink to="/" class="nav-item a" @click="isMobileOpen = false">
                     <LayoutDashboard class="icon" />
-                    <span class="nav-label" v-show="!isCollapsed">Dashboard</span>
+                    <span class="nav-label" v-show="!isCollapsed">{{ $t('dashboard') }}</span>
                 </NuxtLink>
                 <NuxtLink to="/users" class="nav-item a" @click="isMobileOpen = false">
                     <Users class="icon" />
-                    <span class="nav-label" v-show="!isCollapsed">Users</span>
+                    <span class="nav-label" v-show="!isCollapsed">{{ $t('users') }}</span>
                 </NuxtLink>
                 <NuxtLink to="/surveys" class="nav-item a" @click="isMobileOpen = false">
                     <ClipboardList class="icon" />
-                    <span class="nav-label" v-show="!isCollapsed">Surveys</span>
+                    <span class="nav-label" v-show="!isCollapsed">{{ $t('surveys') }}</span>
+                </NuxtLink>
+                <NuxtLink to="/components/tabs" class="nav-item a" @click="isMobileOpen = false">
+                    <ClipboardList class="icon" />
+                    <span class="nav-label" v-show="!isCollapsed">Tabs</span>
                 </NuxtLink>
             </nav>
 
@@ -86,36 +91,7 @@
             </div>
         </main>
 
-        <dialog ref="langModal" class="modal modal_down">
-            <div class="modal-header">
-                <h4 class="margin-0">Select Language</h4>
-                <button @click="closeLanguageModal">
-                    <X class=" cursor-pointer" />
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="flex flex-col">
-
-                    <label class="selection-group flex-row py-1 cursor-pointer">
-                        <input type="radio" v-model="language" value="ar" class="radio">
-                        <span>🇩🇿 العربية</span>
-                    </label>
-
-                    <label class="selection-group flex-row py-1 cursor-pointer">
-                        <input type="radio" v-model="language" value="en" class="radio">
-                        <span>🇬🇧 English</span>
-                    </label>
-
-                    <label class="selection-group flex-row py-1 cursor-pointer">
-                        <input type="radio" v-model="language" value="fr" class="radio">
-                        <span>🇫🇷 Français</span>
-                    </label>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-sm primary" @click="closeLanguageModal">Apply Changes</button>
-            </div>
-        </dialog>
+        <LanguageModal ref="languageModalRef" />
 
     </div>
 </template>
@@ -124,16 +100,22 @@
 import { ref } from 'vue';
 import {
     Menu, LayoutDashboard, Users, ClipboardList,
-    Settings, LogOut, Globe, User, ChevronUp, X, ChevronRight, ChevronLeft
+    Settings, LogOut, Globe, User, ChevronUp, ChevronRight, ChevronLeft
 } from '@lucide/vue';
+const { locale } = useI18n()
+
+// Component ref
+const languageModalRef = ref(null)
 
 const route = useRoute()
 
-const language = ref('en')
+const selectedLang = ref(locale.value)
+
 const isCollapsed = ref(false);
 const isMobileOpen = ref(false);
 const isUserMenuOpen = ref(false);
-const langModal = ref(null)
+// Add this near your other refs
+const isComponentsOpen = ref(false);
 
 const toggleSidebar = () => isCollapsed.value = !isCollapsed.value;
 const toggleMobileSidebar = () => {
@@ -145,15 +127,8 @@ const toggleMobileSidebar = () => {
 const openLanguageModal = () => {
     isUserMenuOpen.value = false;   // Close dropdown
     isMobileOpen.value = false;     // Close sidebar
-    langModal.value.showModal();
-};
-const closeLanguageModal = () => {
-    langModal.value.close();
-    if (language.value == 'ar') {
-        document.documentElement.setAttribute('dir', 'rtl');
-    } else document.documentElement.setAttribute('dir', 'ltr');
-    console.log(language.value)
-
+    // Trigger the 'show' method exposed by the child component
+    languageModalRef.value?.show();
 };
 
 </script>

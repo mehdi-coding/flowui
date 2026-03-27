@@ -64,6 +64,7 @@
 @import "./components/typography.css";
 @import "./components/cards.css";
 @import "./components/modals.css";
+@import "./components/tabs.css";
 
 @layer components {
   .primary {
