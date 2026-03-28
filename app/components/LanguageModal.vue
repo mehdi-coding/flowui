@@ -1,7 +1,7 @@
 <template>
     <dialog ref="modalRef" class="modal modal_down">
         <div class="modal-header">
-            <h4 class="margin-0">Select Language</h4>
+            <h4 class="margin-0">{{ $t('select_language') }}</h4>
             <button @click="close">
                 <X class="cursor-pointer" />
             </button>
@@ -10,17 +10,20 @@
             <div class="flex flex-col">
                 <label class="selection-group flex-row py-1 cursor-pointer">
                     <input type="radio" v-model="selectedLang" value="ar" class="radio">
-                    <span>🇩🇿 العربية</span>
+                    <span>🇩🇿</span>
+                    <span>العربية</span>
                 </label>
 
                 <label class="selection-group flex-row py-1 cursor-pointer">
                     <input type="radio" v-model="selectedLang" value="en" class="radio">
-                    <span>🇬🇧 English</span>
+                    <span>🇬🇧</span>
+                    <span>English</span>
                 </label>
 
                 <label class="selection-group flex-row py-1 cursor-pointer">
                     <input type="radio" v-model="selectedLang" value="fr" class="radio">
-                    <span>🇫🇷 Français</span>
+                    <span>🇫🇷</span>
+                    <span>Français</span>
                 </label>
             </div>
         </div>

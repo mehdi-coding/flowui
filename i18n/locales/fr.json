@@ -1,8 +1,18 @@
 {
   "welcome": "Bienvenue",
-  "dashboard": "Tableau de Board",
+  "dashboard": "Tableau de bord",
   "users": "Utilisateurs",
-  "surveys": "Enquetes",
-  "select_language": "Selection Language",
-  "apply": "Appliquer Changements"
+  "surveys": "Sondages",
+  "select_language": "Sélectionner la langue",
+  "apply": "Appliquer les modifications",
+  "components": "Composants",
+  "examples": "Exemples",
+  "tabs": "Onglets",
+  "modals": "Modales",
+  "direction": "Direction",
+  "login": "Se connecter",
+  "logout": "Se déconnecter",
+  "register": "S'inscrire",
+  "settings": "Paramètres",
+  "language": "Langue"
 }

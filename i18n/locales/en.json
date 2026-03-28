@@ -4,5 +4,15 @@
   "users": "Users",
   "surveys": "Surveys",
   "select_language": "Select Language",
-  "apply": "Apply Changes"
+  "apply": "Apply Changes",
+  "components":"Components",
+  "examples":"Examples",
+  "tabs":"Tabs",
+  "modals":"modals",
+  "direction":"Direction",
+  "login":"Login",
+  "logout":"Logout",
+  "register":"Register",
+  "settings": "Settings",
+  "language": "Language"
 }

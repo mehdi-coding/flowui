@@ -40,7 +40,7 @@
                     <div class="sub-nav" v-if="item.isComponentsOpen && !isCollapsed && item.children">
                         <NuxtLink :to="child.to" class="sub-nav-item" v-for="child in item.children" :key="child.to"
                             @click="isMobileOpen = false">{{
-                                child.label }}
+                                $t(child.label) }}
                         </NuxtLink>
                     </div>
                 </div>
@@ -50,16 +50,16 @@
                 <div v-show="isUserMenuOpen" class="user-dropdown card">
                     <button class="footer-item w-full" @click="openLanguageModal">
                         <Globe class="icon-sm" />
-                        <span class="nav-label">Language</span>
+                        <span class="nav-label">{{ $t('language') }}</span>
                     </button>
                     <button class="footer-item w-full">
                         <Settings class="icon-sm" />
-                        <span class="nav-label">Settings</span>
+                        <span class="nav-label">{{ $t('settings') }}</span>
                     </button>
                     <hr class="dropdown-divider">
                     <button class="footer-item w-full text-danger">
                         <LogOut class="icon-sm" />
-                        <span class="nav-label">Logout</span>
+                        <span class="nav-label">{{ $t('logout') }}</span>
                     </button>
                 </div>
 
@@ -139,11 +139,11 @@ const navItems = ref([
         isComponentsOpen: false
     },
     {
-        label: 'Examples',
+        label: 'examples',
         icon: BookOpen,
         children: [
-            { label: 'Direction', to: '/examples/direction' },
-            { label: 'Login', to: '/examples/login' }
+            { label: 'direction', to: '/examples/direction' },
+            { label: 'login', to: '/examples/login' }
         ],
         isComponentsOpen: false
     }
