@@ -105,7 +105,7 @@
 import { ref, computed } from 'vue';
 import {
     Menu, LayoutDashboard, Users, ClipboardList,
-    Settings, LogOut, Globe, User, ChevronUp, ChevronDown, ChevronRight, ChevronLeft, Layers, BookOpen
+    Settings, LogOut, Globe, User, ChevronUp, ChevronDown, ChevronRight, ChevronLeft, Layers, BookOpen, FingerprintPattern
 } from '@lucide/vue';
 const { locale } = useI18n()
 
@@ -142,8 +142,26 @@ const navItems = ref([
         label: 'examples',
         icon: BookOpen,
         children: [
+            { label: 'Api', to: '/examples/api' },
+            { label: 'ssr', to: '/examples/ssr' },
+            { label: 'csr', to: '/examples/csr' },
+            { label: 'static', to: '/examples/static' },
             { label: 'direction', to: '/examples/direction' },
-            { label: 'login', to: '/examples/login' }
+        ],
+        isComponentsOpen: false
+    },
+    {
+        label: 'Auth',
+        icon: FingerprintPattern,
+        children: [
+            { label: 'Login', to: '/login' },
+            { label: 'Register', to: '/register' },
+            { label: 'unauthorized', to: '/unauthorized' },
+            { label: '404', to: '/something' },
+            { label: 'forgot_password', to: '/auth/forgot_password' },
+            { label: 'reset_password', to: '/auth/reset_password' },
+            { label: 'verify_email_success', to: 'auth/verify_email_success' },
+            { label: 'verify_email_error', to: 'auth/verify_email_error' },
         ],
         isComponentsOpen: false
     }

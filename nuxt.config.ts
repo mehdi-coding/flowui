@@ -33,5 +33,8 @@ export default defineNuxtConfig({
       alwaysRedirect: true,
       redirectOn: 'root', // redirect only on root path
     }
+  },
+  routeRules: {
+    'examples/static': { prerender: true }
   }
 })
