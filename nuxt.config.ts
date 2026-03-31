@@ -15,6 +15,11 @@ export default defineNuxtConfig({
         '@vue/devtools-core',
         '@vue/devtools-kit',
         '@lucide/vue',
+        '@tiptap/vue-3',
+        '@tiptap/starter-kit',
+        '@tiptap/extension-underline',
+        '@tiptap/extension-text-align',
+        '@tiptap/extension-link',
       ]
     }
   },
@@ -36,5 +41,8 @@ export default defineNuxtConfig({
   },
   routeRules: {
     'examples/static': { prerender: true }
-  }
+  },
+  nitro: {
+    preset: 'node-server',
+  },
 })

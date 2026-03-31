@@ -5,7 +5,8 @@
 
 import { performance } from 'perf_hooks'
 
-const BASE_URL = process.argv[2] || 'http://localhost:3000'
+// const BASE_URL = process.argv[2] || 'http://localhost:3000'
+const BASE_URL = process.argv[2] || 'https://admin.codingmehdi.com/'
 const ITERATIONS = parseInt(process.argv[3] || '10')
 
 const PAGES = [

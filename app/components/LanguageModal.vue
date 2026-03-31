@@ -10,19 +10,19 @@
             <div class="flex flex-col">
                 <label class="selection-group flex-row py-1 cursor-pointer">
                     <input type="radio" v-model="selectedLang" value="ar" class="radio">
-                    <span>🇩🇿</span>
+                    <img src="/flags/dz.svg" alt="DZ Flag" width="28" class="shadow border border-gray-300" />
                     <span>العربية</span>
                 </label>
 
                 <label class="selection-group flex-row py-1 cursor-pointer">
                     <input type="radio" v-model="selectedLang" value="en" class="radio">
-                    <span>🇬🇧</span>
+                    <img src="/flags/gb.svg" alt="GB Flag" width="28" class="shadow border border-gray-300" />
                     <span>English</span>
                 </label>
 
                 <label class="selection-group flex-row py-1 cursor-pointer">
                     <input type="radio" v-model="selectedLang" value="fr" class="radio">
-                    <span>🇫🇷</span>
+                    <img src="/flags/fr.svg" alt="FR Flag" width="28" class="shadow border border-gray-300" />
                     <span>Français</span>
                 </label>
             </div>

@@ -124,9 +124,13 @@ const navItems = ref([
         isComponentsOpen: false
     },
     {
-        label: 'surveys',
+        label: 'surveys.surveys',
         icon: ClipboardList,
-        to: '/surveys',
+        children: [
+            { label: 'list', to: '/surveys', },
+            { label: 'new', to: '/surveys/create' }
+        ],
+
         isComponentsOpen: false
     },
     {
