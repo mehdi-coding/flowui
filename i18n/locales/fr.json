@@ -99,5 +99,24 @@
     "type_yes_no": "Oui / Non",
     "type_date": "Date",
     "type_number": "Nombre"
+  },
+  "survey_runner": {
+    "start_btn": "Commencer le sondage",
+    "submit_btn": "Soumettre les réponses",
+    "required_note": "Indique une question obligatoire",
+    "placeholder_text": "Tapez votre réponse ici...",
+    "placeholder_textarea": "Tapez votre réponse détaillée ici...",
+    "placeholder_number": "Entrez un nombre",
+    "yes": "Oui",
+    "no": "Non",
+    "success_title": "Merci !",
+    "success_desc": "Votre réponse a été enregistrée avec succès."
+  },
+  "survey_results": {
+    "export_csv": "Exporter en CSV",
+    "total_responses": "Total des réponses",
+    "completion_rate": "Taux de complétion",
+    "avg_time": "Temps moyen",
+    "latest_responses": "Dernières réponses"
   }
 }

@@ -2,10 +2,7 @@
     <div class="min-h-screen flex flex-col p-4 bg-surface-sunken" :dir="localeProperties.dir">
 
         <div class="w-full flex justify-end">
-            <LanguageModal ref="langModal" />
-            <button class="btn btn-sm btn-outline" @click="$refs.langModal.show()">
-                <Globe class="icon-sm" /> {{ localeProperties.name }}
-            </button>
+            <LanguageBtn />
         </div>
 
         <div class="grow flex items-center justify-center py-6">
@@ -18,7 +15,6 @@
 </template>
 
 <script setup>
-import { Globe } from '@lucide/vue'
 import { useI18n } from '#i18n'
 const { localeProperties } = useI18n()
 </script>

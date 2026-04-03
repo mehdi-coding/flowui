@@ -99,5 +99,24 @@
     "type_yes_no": "نعم / لا",
     "type_date": "تاريخ",
     "type_number": "رقم"
+  },
+  "survey_runner": {
+    "start_btn": "بدء الاستبيان",
+    "submit_btn": "إرسال الإجابات",
+    "required_note": "يشير إلى سؤال إلزامي",
+    "placeholder_text": "اكتب إجابتك هنا...",
+    "placeholder_textarea": "اكتب إجابتك المفصلة هنا...",
+    "placeholder_number": "أدخل رقماً",
+    "yes": "نعم",
+    "no": "لا",
+    "success_title": "شكراً لك!",
+    "success_desc": "تم تسجيل ردك بنجاح."
+  },
+  "survey_results": {
+    "export_csv": "تصدير إلى CSV",
+    "total_responses": "إجمالي الردود",
+    "completion_rate": "معدل الإكمال",
+    "avg_time": "متوسط الوقت",
+    "latest_responses": "أحدث الردود"
   }
 }

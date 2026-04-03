@@ -28,7 +28,7 @@
                 </h4>
                 <div class="flex flex-wrap justify-center gap-2">
                     <button type="button" v-for="type in questionTypes" :key="type"
-                        class="btn btn-sm btn-outline bg-surface shadow-sm" @click="addQuestion(type)">
+                        class="btn btn-sm btn-outline shadow-sm" @click="addQuestion(type)">
                         <Plus class="icon-xs" /> {{ type.replace('_', ' ') }}
                     </button>
                 </div>

@@ -36,6 +36,7 @@
 <script setup>
 import { ref } from 'vue'
 import { X } from '@lucide/vue'
+import { useI18n } from '#i18n'
 
 const { locale, setLocale } = useI18n()
 const modalRef = ref(null)

@@ -4,14 +4,14 @@
   "users": "Users",
   "select_language": "Select Language",
   "apply": "Apply Changes",
-  "components":"Components",
-  "examples":"Examples",
-  "tabs":"Tabs",
-  "modals":"modals",
-  "direction":"Direction",
-  "login":"Login",
-  "logout":"Logout",
-  "register":"Register",
+  "components": "Components",
+  "examples": "Examples",
+  "tabs": "Tabs",
+  "modals": "modals",
+  "direction": "Direction",
+  "login": "Login",
+  "logout": "Logout",
+  "register": "Register",
   "settings": "Settings",
   "language": "Language",
   "auth": {
@@ -99,5 +99,24 @@
     "type_yes_no": "Yes / No",
     "type_date": "Date",
     "type_number": "Number"
+  },
+  "survey_runner": {
+    "start_btn": "Start Survey",
+    "submit_btn": "Submit Answers",
+    "required_note": "Indicates a required question",
+    "placeholder_text": "Type your answer here...",
+    "placeholder_textarea": "Type your detailed answer here...",
+    "placeholder_number": "Enter a number",
+    "yes": "Yes",
+    "no": "No",
+    "success_title": "Thank You!",
+    "success_desc": "Your response has been successfully recorded."
+  },
+  "survey_results": {
+    "export_csv": "Export to CSV",
+    "total_responses": "Total Responses",
+    "completion_rate": "Completion Rate",
+    "avg_time": "Avg. Time",
+    "latest_responses": "Latest Responses"
   }
 }

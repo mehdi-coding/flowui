@@ -62,7 +62,7 @@ const handleSubmit = () => {
                         <h4 class="h5 m-0">{{ $t('surveys.basic_info') }}</h4>
                     </div>
 
-                    <div class="card-body !pt-2">
+                    <div class="card-body pt-2">
                         <Tabs v-model="activeLang" :tabs="languageTabs">
                             <template #en>
                                 <div class="flex flex-col gap-4 mt-2">
