@@ -49,7 +49,13 @@
             <div class="sidebar-footer">
                 <div v-show="isUserMenuOpen" class="user-dropdown card">
                     <button class="footer-item w-full" @click="openLanguageModal">
-                        <Globe class="icon-sm" />
+                        <!-- <Globe class="icon-sm" /> -->
+                        <img src="/flags/gb.svg" alt="GB Flag" width="28" class="shadow border border-gray-300"
+                            v-if="selectedLang == 'en'" />
+                        <img src="/flags/dz.svg" alt="GB Flag" width="28" class="shadow border border-gray-300"
+                            v-if="selectedLang == 'ar'" />
+                        <img src="/flags/fr.svg" alt="GB Flag" width="28" class="shadow border border-gray-300"
+                            v-if="selectedLang == 'fr'" />
                         <span class="nav-label">{{ $t('language') }}</span>
                     </button>
                     <button class="footer-item w-full">
@@ -57,7 +63,7 @@
                         <span class="nav-label">{{ $t('settings') }}</span>
                     </button>
                     <hr class="dropdown-divider">
-                    <button class="footer-item w-full text-danger">
+                    <button class="footer-item w-full text-danger" @click="logout">
                         <LogOut class="icon-sm" />
                         <span class="nav-label">{{ $t('logout') }}</span>
                     </button>
@@ -68,8 +74,8 @@
                         <User class="icon-sm" />
                     </div>
                     <div class="user-info" v-show="!isCollapsed">
-                        <span class="font-600 text-sm">Admin User</span>
-                        <span class="text-xs text-muted">admin@company.com</span>
+                        <span class="font-600 text-sm">{{ user.name }}</span>
+                        <span class="text-xs text-muted">{{ user.email }}</span>
                     </div>
                     <ChevronUp class="icon-sm ms-auto" v-show="!isCollapsed" />
                 </button>
@@ -108,6 +114,9 @@ import {
     Settings, LogOut, Globe, User, ChevronUp, ChevronDown, ChevronRight, ChevronLeft, Layers, BookOpen, FingerprintPattern
 } from '@lucide/vue';
 const { locale } = useI18n()
+
+const { user, logout } = useAuth()
+
 
 /* ---------------- NAVIGATION ---------------- */
 const navItems = ref([

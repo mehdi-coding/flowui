@@ -1,10 +1,10 @@
 <template>
-    <div class="max-w-6xl mx-auto py-8 px-4" :dir="currentLang === 'ar' ? 'rtl' : 'ltr'">
+    <div class="max-w-6xl mx-auto py-8 px-4">
 
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
             <div>
                 <div class="flex items-center gap-2 text-sm text-muted mb-2">
-                    <NuxtLink to="/surveys" class="hover:text-primary transition-colors">{{ $t('surveys.title') }}
+                    <NuxtLink to="/surveys" class="hover:text-primary transition-colors">{{ $t('surveys.surveys') }}
                     </NuxtLink>
                     <ChevronRight v-if="currentLang !== 'ar'" class="icon-xs" />
                     <ChevronLeft v-else class="icon-xs" />
@@ -17,7 +17,7 @@
                 </h1>
             </div>
             <div class="flex items-center gap-3">
-                <button class="btn btn-outline bg-surface">
+                <button class="btn btn-outline">
                     <Download class="icon-sm" /> {{ $t('survey_results.export_csv') }}
                 </button>
             </div>
@@ -86,7 +86,7 @@
 
                     <div v-else class="flex flex-col sm:flex-row items-center gap-8 flex-1">
 
-                        <div class="relative w-32 h-32 flex-shrink-0 rounded-full shadow-sm"
+                        <div class="relative w-32 h-32 shrink-0 rounded-full shadow-sm"
                             :style="{ background: generateConicGradient(getChartData(q)) }">
                             <div
                                 class="absolute inset-4 bg-surface rounded-full flex items-center justify-center shadow-inner">
@@ -96,8 +96,8 @@
 
                         <div class="flex-1 w-full space-y-3">
                             <div v-for="(item, i) in getChartData(q)" :key="i" class="flex items-center gap-3 text-sm">
-                                <div class="w-3 h-3 rounded-full flex-shrink-0"
-                                    :style="{ backgroundColor: item.color }"></div>
+                                <div class="w-3 h-3 rounded-full shrink-0" :style="{ backgroundColor: item.color }">
+                                </div>
 
                                 <div class="flex-1 min-w-0">
                                     <div class="flex justify-between items-end mb-1">

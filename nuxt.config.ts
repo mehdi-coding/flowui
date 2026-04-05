@@ -5,7 +5,6 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   css: ['./app/assets/css/main.css','./assets/css/fonts.css'],
-
   vite: {
     plugins: [
       tailwindcss(),
@@ -45,4 +44,10 @@ export default defineNuxtConfig({
   nitro: {
     preset: 'node-server',
   },
+  runtimeConfig: {  
+    // Public keys (client-side and server-side)
+    public: {
+      apiBaseUrl: 'http://localhost:3000/api/v1'
+    }
+  }
 })

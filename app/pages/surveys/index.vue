@@ -12,6 +12,6 @@ definePageMeta({
     <br>
     <NuxtLink to="/surveys/123456789/take" class="btn">Take Survey</NuxtLink>
     <br>
-    <NuxtLink to="/surveys/123456789/results" class="btn success">Take Survey</NuxtLink>
+    <NuxtLink to="/surveys/123456789/results" class="btn warning">Survey's Result</NuxtLink>
 
 </template>

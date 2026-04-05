@@ -75,3 +75,10 @@
     </div>
 
 </template>
+<script setup>
+definePageMeta({
+    middleware: 'auth'
+})
+
+const { user, logout } = useAuth()
+</script>

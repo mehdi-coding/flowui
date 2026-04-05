@@ -39,12 +39,31 @@
 
 <script setup>
 import { ref } from 'vue'
-definePageMeta({ layout: 'auth' })
 
-const email = ref('')
-const password = ref('')
+definePageMeta({
+    layout: 'auth',
+    middleware: 'guest' // Apply the guest middleware here
+})
 
-const handleLogin = () => {
-    console.log('Login attempt', email.value)
+const { login } = useAuth()
+const email = ref('super@mindcare.com')
+const password = ref('password')
+const isLoading = ref(false)
+const errorMessage = ref('')
+
+const handleLogin = async () => {
+    isLoading.value = true
+    errorMessage.value = ''
+
+    try {
+        const response = await login({ email: email.value, password: password.value })
+
+        // If successful, navigate to the protected area
+        await navigateTo('/')
+    } catch (error) {
+        errorMessage.value = 'Invalid email or password. Please try again.'
+    } finally {
+        isLoading.value = false
+    }
 }
 </script>
